@@ -16,9 +16,9 @@ namespace Alarmclock
         int MaxNumber { get; set; }
         int Number { get; set; }
         //Öka NumberDisplayobjektet med 1
-        public void increment
+        public void Increment()
         {
-
+            
         }
         //Konstruktor, tom kropp, anropar nästa konstruktur
         public NumberDisplay(int maxNumber)

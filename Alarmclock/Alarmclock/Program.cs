@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlarmClock;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,10 @@ namespace Alarmclock
     {
         //testa konstruktorerna, egenskaperna och metoderna
         static void Main(string[] args)
-        {    
+        {
+            AlarmClox ac = new AlarmClox();
+            
+
             //Test:
             //1. Standardkonstruktion, skriv ut värdet 0:00
             //2. Två parametrar, skriv ut 9:42
@@ -21,7 +25,7 @@ namespace Alarmclock
             //7. Kasta undanag vid felaktiva värden KONSTRUKTORER
         }
         //Första parametern är ett AlarmClockobjekt, andra är antal gånger TickTock skall anropas
-        private void Run(AlarmClock ac, int minutes)
+        private void Run( AlarmClox ac, int minutes)
         {
 
         }
