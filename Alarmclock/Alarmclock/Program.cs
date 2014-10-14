@@ -12,8 +12,9 @@ namespace Alarmclock
         //testa konstruktorerna, egenskaperna och metoderna
         static void Main(string[] args)
         {
-            AlarmClox ac = new AlarmClox();
-            
+            AlarmClox ac = new AlarmClox(12, 13, 14, 15);
+            string test = ac.ToString();
+            Console.WriteLine(test);
 
             //Test:
             //1. Standardkonstruktion, skriv ut värdet 0:00

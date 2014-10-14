@@ -10,8 +10,6 @@ namespace Alarmclock
     {
         //En set i NumberDisplay kastar undantag om försök gör att ställa felaktig kod
         //Valideringen av rätt tid sker i NumberDisplay  
-        private int _maxNumber;
-        private int _number;
 
         public int MaxNumber { get; set; }
         public int Number { get; set; }

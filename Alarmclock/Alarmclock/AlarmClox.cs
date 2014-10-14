@@ -54,7 +54,7 @@ namespace AlarmClock
                {
                    throw new ArgumentException();
                }
-               _time.Minute = value;
+               _time.Hour = value;
            }
        }
        int Minute
@@ -69,14 +69,16 @@ namespace AlarmClock
                {
                    throw new ArgumentException();
                }
+               _time.Minute = value;
            }
+          
        }
 
         public AlarmClox()
             :this(0, 00)
         {}
         public AlarmClox(int hour, int minute)
-            :this(0, 00, 0, 00)
+            :this(hour, minute, 0, 00)
         { }
         //Detta är enda konstruktorn som får innehålla kod som leder till att fält i klassen tilldelas värden
         public AlarmClox(int hour, int minute, int alarmHour, int alarmMinute)
