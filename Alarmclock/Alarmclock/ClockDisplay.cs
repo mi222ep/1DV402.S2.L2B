@@ -8,6 +8,8 @@ namespace Alarmclock
 {
     class ClockDisplay
     {
+        //I klassen ClockDisplay ska två privata fält med referenser till
+        //NumberDisplay användas 
         //fältet _hourDisplay och _minuteDisplay kapslar in egenskapen Hour/Minute
         int Hour { get; set; }
         int Minute { get; set; }

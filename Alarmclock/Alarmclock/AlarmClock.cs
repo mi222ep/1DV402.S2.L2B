@@ -8,6 +8,9 @@ namespace AlarmClock
 {
     class AlarmClock
     {
+        //AlarmClock innehåller 2 referenser till ClockDisplay,
+        //En ansvarar för timmar (0-23), en för minuter(0-59)
+        //Om värdet är ental ska noll sättas framför i minuter, men ej i timmar
         int AlarmHour { get; set; }
         int AlarmMinute { get; set; }
         int Hour { get; set; }

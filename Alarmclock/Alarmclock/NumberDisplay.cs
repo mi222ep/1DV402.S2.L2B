@@ -8,6 +8,8 @@ namespace Alarmclock
 {
     class NumberDisplay
     {
+        //En set i NumberDisplay kastar undantag om försök gör att ställa felaktig kod
+        //Valideringen av rätt tid sker i NumberDisplay  
         int _maxNumber;
         int _number;
 
