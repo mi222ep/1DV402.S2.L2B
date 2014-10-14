@@ -10,11 +10,11 @@ namespace Alarmclock
     {
         //En set i NumberDisplay kastar undantag om försök gör att ställa felaktig kod
         //Valideringen av rätt tid sker i NumberDisplay  
-        int _maxNumber;
-        int _number;
+        private int _maxNumber;
+        private int _number;
 
-        int MaxNumber { get; set; }
-        int Number { get; set; }
+        public int MaxNumber { get; set; }
+        public int Number { get; set; }
         //Öka NumberDisplayobjektet med 1
         public void Increment()
         {
@@ -22,6 +22,7 @@ namespace Alarmclock
         }
         //Konstruktor, tom kropp, anropar nästa konstruktur
         public NumberDisplay(int maxNumber)
+            :this(maxNumber, 00)
         {
 
         }
@@ -31,7 +32,7 @@ namespace Alarmclock
 
         }
         //Returnerar numret, utan att nummer mindre än 10 inleds med 0
-        public string ToString()
+        public override string ToString()
         {
             return ("Halloj dä!");
         }

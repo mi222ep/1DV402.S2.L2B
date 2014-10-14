@@ -8,11 +8,39 @@ namespace Alarmclock
 {
     class ClockDisplay
     {
-        //I klassen ClockDisplay ska två privata fält med referenser till
-        //NumberDisplay användas 
-        //fältet _hourDisplay och _minuteDisplay kapslar in egenskapen Hour/Minute
-        public int Hour { get; set; }
-        public int Minute { get; set; }
+        NumberDisplay _hourDisplay = new NumberDisplay(23);
+        NumberDisplay _minuteDisplay = new NumberDisplay(59);
+
+        public int Hour 
+       {
+           get
+           {
+               return _hourDisplay.Number;
+           }
+           set
+           {
+               if (value < 0 || value > 23)
+               {
+                   throw new ArgumentException();
+               }
+           _hourDisplay.Number = value;
+           }
+       }
+        public int Minute
+        {
+            get
+            {
+                return _minuteDisplay.Number;
+            }
+            set
+            {
+                if (value < 0 || value > 59)
+                {
+                    throw new ArgumentException();
+                }
+                _minuteDisplay.Number = value;
+            }
+        }
         public ClockDisplay()
             :this (0, 00)
         {}

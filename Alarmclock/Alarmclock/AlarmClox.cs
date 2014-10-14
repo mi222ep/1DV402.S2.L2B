@@ -9,13 +9,8 @@ namespace AlarmClock
 {
     class AlarmClox
     {
-        //AlarmClock innehåller 2 referenser till ClockDisplay,
-        //En ansvarar för timmar (0-23), en för minuter(0-59)
-        //Om värdet är ental ska noll sättas framför i minuter, men ej i timmar
-        //Referens till Clockdisplayobjekt som ansvarar för väckarklockans aktuella tid
-        //Kapslas in av AlarmHour och AlarmMinute
-       ClockDisplay _alarmTime = new ClockDisplay(12, 23);
-       ClockDisplay _time = new ClockDisplay(4, 53);
+       ClockDisplay _alarmTime = new ClockDisplay();
+       ClockDisplay _time = new ClockDisplay();
 
        int AlarmHour
        {
