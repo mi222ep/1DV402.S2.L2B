@@ -41,8 +41,9 @@ namespace Alarmclock
                 _minuteDisplay.Number = value;
             }
         }
+        //Referera till NumberDisplay-objekt
         public ClockDisplay()
-            :this (0, 00)
+            :this (0, 0)
         {}
         public ClockDisplay(int hour, int minute)
         {
