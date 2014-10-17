@@ -50,15 +50,28 @@ namespace Alarmclock
             Hour = hour;
             Minute = minute;
         }
-        //Gör att ClockDisplay-objektet går 1 minut, om mintantalet blir 0, skall timme ökas med 1. 
         public void Increment()
         {
+            _minuteDisplay.Increment();
 
+            if (Minute == 0)
+            {
+                if (Hour == 23)
+                {
+                    Hour = 0;
+                }
+                else
+                {
+                    Hour++;
+                }
+            }
         }
-        //Retunerar sträng med tiden i formatet HH:mm
         public override string ToString()
         {
-            return ("hej hej");
+            string stringhour = _hourDisplay.ToString();
+            string stringminute = _minuteDisplay.ToString();
+
+            return string.Format("{0}:{1:00}", stringhour, stringminute);
         }
     }
 }

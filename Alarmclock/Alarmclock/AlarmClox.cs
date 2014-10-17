@@ -9,10 +9,10 @@ namespace AlarmClock
 {
     class AlarmClox
     {
-       ClockDisplay _alarmTime = new ClockDisplay();
-       ClockDisplay _time = new ClockDisplay();
+       private ClockDisplay _alarmTime = new ClockDisplay();
+       private ClockDisplay _time = new ClockDisplay();
 
-       int AlarmHour
+       public int AlarmHour
        {
            get
            {
@@ -22,12 +22,13 @@ namespace AlarmClock
            {
                if (value < 0 || value > 23)
                {
-                   throw new ArgumentException();
+                   throw new ArgumentException("Alarmtimmen är inte inom det slutna intervallet 0 och 23");
                }
            _alarmTime.Hour = value;
+           
            }
        }
-       int AlarmMinute
+       public int AlarmMinute
        {
            get
            {
@@ -37,12 +38,12 @@ namespace AlarmClock
            {
                if (value < 0 || value >59)
                {
-                   throw new ArgumentException();
+                   throw new ArgumentException("Alarmminuten är inte inom det slutna intervallet 0 och 59");
                }
                _alarmTime.Minute = value;
            }
        }
-       int Hour
+       public int Hour
        {
            get
            {
@@ -52,12 +53,12 @@ namespace AlarmClock
            {
                if(value <0 || value >23)
                {
-                   throw new ArgumentException();
+                   throw new ArgumentException("Timmen är inte inom det slutna intervallet 0 och 23");
                }
                _time.Hour = value;
            }
        }
-       int Minute
+       public int Minute
        {
            get
            {
@@ -67,51 +68,57 @@ namespace AlarmClock
            {
                if(value <0 || value >59)
                {
-                   throw new ArgumentException();
+                   throw new ArgumentException("Minuten är inte inom det slutna intervallet 0 och 59");
                }
                _time.Minute = value;
            }
           
        }
-
         public AlarmClox()
             :this(0, 00)
         {}
         public AlarmClox(int hour, int minute)
             :this(hour, minute, 0, 00)
         { }
-        //Detta är enda konstruktorn som får innehålla kod som leder till att fält i klassen tilldelas värden
         public AlarmClox(int hour, int minute, int alarmHour, int alarmMinute)
         {
+            if (hour < 0 || hour > 23)
+            {
+                throw new ArgumentException("Konstruktorn säger nej till din konstiga timme"); 
+            }
             Hour = hour;
+            if (minute < 0 || minute > 59)
+            {
+                throw new ArgumentException("Konstruktorn säger nej till din konstiga minut");
+            }
             Minute = minute;
+            if (alarmHour < 0 || alarmHour > 23)
+            {
+                throw new ArgumentException("Konstruktorn säger nej till din konstiga alarmtimme");
+            }
             AlarmHour = alarmHour;
+            if (hour < 0 || hour > 59)
+            {
+                throw new ArgumentException("Konstruktorn säger nej till din konstiga alarmminut");
+            }
             AlarmMinute = alarmMinute;
         }
-        //Metod, då klockan att gå en minut, om ny tid stämmer överens med alarm, returnera TRUE, annars FALSE
         public bool TickTock()
         {
-            if (Minute == 59)
-            {
-                Minute = 0;
-                if (Hour == 23)
-                {
-                    Hour = 0;
-                }
-                else { Hour++; }
 
-            }
-            else { Minute++; }
+            _time.Increment();
             if (Hour == AlarmHour && Minute == AlarmMinute)
             {
                 return true;
             }
             return false;
         }
-        //Metod, retunerar tid + alarmtid, tex 8:42 (16:23)
         public override string ToString()
         {
-            return string.Format("{0}:{1}({2}:{3})", Hour, Minute, AlarmHour, AlarmMinute);
+            string stringtime = _time.ToString();
+            string stringalarm = _alarmTime.ToString();
+
+            return string.Format("{0}({1})", stringtime, stringalarm);
         }
 
     }

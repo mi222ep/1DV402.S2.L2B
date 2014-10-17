@@ -9,36 +9,107 @@ namespace Alarmclock
 {
     class Program
     {
-        //testa konstruktorerna, egenskaperna och metoderna
         static void Main(string[] args)
         {
-            AlarmClox ac = new AlarmClox(12, 13, 14, 15);
-            string test = ac.ToString();
-            Console.WriteLine(test);
+            ViewTestHeader("Test nummer 2");
+            AlarmClox clock2 = new AlarmClox(12, 01);
+            Run(clock2, 1);
+            
+            ViewTestHeader("Test nummer 3");
+            AlarmClox clock3 = new AlarmClox(00, 24, 07, 15);
+            Run(clock3, 1);
+            
+            ViewTestHeader("Test nummer 4");
+            AlarmClox clock4 = new AlarmClox(23, 53, 07, 42);
+            Run(clock4, 13);
 
-            //Test:
-            //1. Standardkonstruktion, skriv ut värdet 0:00
-            //2. Två parametrar, skriv ut 9:42
-            //3. 4 parametrar, skriv ut 13.24 (7:35)
-            //4. Låt klockan gå 13 minuter från 23.59
-            //5. Ställ alarm 6.15 och låt klockan gå från 6.13
-            //6. Kasta undantag vid felaktiga värden EGENSKAPER
+            ViewTestHeader("Test nummer 5");
+            AlarmClox clock5 = new AlarmClox(6, 13, 6, 15);
+            Run(clock5, 13);
+
+            ViewTestHeader("Test nummer 6");
+            try
+            {
+                clock5.Hour = 77;
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
+            try
+            {
+                clock5.Minute = 77;
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
+            try
+            {
+                clock5.AlarmHour = 77;
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
+            try
+            {
+                clock5.AlarmMinute = 77;
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
+
+            ViewTestHeader("Test nummer 7");
+            try
+            {
+                AlarmClox finalClox = new AlarmClox(42, 1, 1, 1);
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
+            try
+            {
+                AlarmClox finalClox = new AlarmClox(1, 1, 42, 1);
+            }
+            catch (ArgumentException ex)
+            {
+                ViewErrorMessage(ex.Message);
+            }
             //7. Kasta undanag vid felaktiva värden KONSTRUKTORER
         }
-        //Första parametern är ett AlarmClockobjekt, andra är antal gånger TickTock skall anropas
-        private void Run( AlarmClox ac, int minutes)
+        public static void Run(AlarmClox ac, int minutes)
         {
 
+            for (int i = 0; i < minutes; i++)
+            {
+
+                if (ac.TickTock())
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.Write(ac);
+                    Console.WriteLine("Beep bepp");
+                    Console.ResetColor();
+
+                }
+                else
+                {
+                    Console.WriteLine(ac);
+                }
+            }
         }
-        //Felmeddelande som argument
-        private void ViewErrorMessage(string message)
+        public static void ViewErrorMessage(string message)
         {
-
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
-        //Sträng som argument och presenterar strängen
-        private void ViewTestHeader(string header)
+        public static void ViewTestHeader(string header)
         {
-
+            Console.WriteLine("----------------");
+            Console.WriteLine(header);
         }
     }
 }
